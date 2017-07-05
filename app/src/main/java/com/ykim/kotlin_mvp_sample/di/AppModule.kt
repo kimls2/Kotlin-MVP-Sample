@@ -7,9 +7,10 @@ import javax.inject.Singleton
 
 @Module
 class AppModule {
-  @Singleton
-  @Provides
-  fun provideImgurService(): ImgurService {
-    return ImgurService.Factory.makeImugurService()
-  }
+    @Singleton
+    @Provides
+    fun provideImgurService(): ImgurService {
+        return ImgurService.Factory.makeImugurService()
+    }
+
 }
