@@ -3,12 +3,8 @@ package com.ykim.kotlin_mvp_sample.di
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
 import com.ykim.kotlin_mvp_sample.MyApp
 import dagger.android.AndroidInjection
-import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 
 /**
@@ -52,16 +48,16 @@ object AppInjector {
     if (activity is HasSupportFragmentInjector) {
       AndroidInjection.inject(activity)
     }
-    if (activity is FragmentActivity) {
-      (activity as? FragmentActivity)?.supportFragmentManager?.registerFragmentLifecycleCallbacks(
-          object : FragmentManager.FragmentLifecycleCallbacks() {
-            override fun onFragmentCreated(fm: FragmentManager?, f: Fragment?,
-                savedInstanceState: Bundle?) {
-              if (f is Injectable) {
-                AndroidSupportInjection.inject(f)
-              }
-            }
-          }, true)
-    }
+//    if (activity is FragmentActivity) {
+//      (activity as? FragmentActivity)?.supportFragmentManager?.registerFragmentLifecycleCallbacks(
+//          object : FragmentManager.FragmentLifecycleCallbacks() {
+//            override fun onFragmentCreated(fm: FragmentManager?, f: Fragment?,
+//                savedInstanceState: Bundle?) {
+//              if (f is Injectable) {
+//                AndroidSupportInjection.inject(f)
+//              }
+//            }
+//          }, true)
+//    }
   }
 }
