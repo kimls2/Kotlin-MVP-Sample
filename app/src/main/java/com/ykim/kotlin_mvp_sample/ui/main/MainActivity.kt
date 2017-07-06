@@ -2,45 +2,24 @@ package com.ykim.kotlin_mvp_sample.ui.main
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
 import com.ykim.kotlin_mvp_sample.R
-import com.ykim.kotlin_mvp_sample.data.model.GalleryImage
-import com.ykim.kotlin_mvp_sample.ui.main.list.MainAdapter
+import com.ykim.kotlin_mvp_sample.ui.main.list.MainListView
+import com.ykim.kotlin_mvp_sample.util.ActivityUtils
 import com.ykim.kotlin_mvp_sample.util.getAppComponent
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainMvp.View {
+class MainActivity : AppCompatActivity() {
 
     lateinit var component: MainComponent
-    @Inject lateinit var mainPresenter: MainPresenter
 
-    private var adapter: MainAdapter = MainAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         component = getAppComponent().mainComponent(MainModule())
-        component.inject(this)
         setContentView(R.layout.activity_main)
 
-        mainPresenter.onAttach(this)
-        mainPresenter.loadImage()
-        mainRv.layoutManager = GridLayoutManager(this, 2)
-        mainRv.adapter = adapter
-
-    }
-
-    override fun showGalleryImage(items: MutableList<GalleryImage>) {
-        adapter.addItems(items)
-    }
-
-    override fun showError(message: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-
-    override fun showLoading(show: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val listView = MainListView(this)
+        container.addView(listView)
+//        findOrCreateViewFragment()
     }
 
     override fun getSystemService(name: String?): Any {
@@ -48,5 +27,16 @@ class MainActivity : AppCompatActivity(), MainMvp.View {
             "component" -> return component
             else -> return super.getSystemService(name)
         }
+    }
+
+    private fun findOrCreateViewFragment(): MainFragment {
+        var mainFrag: MainFragment?
+        mainFrag = supportFragmentManager.findFragmentById(R.id.container) as MainFragment?
+        if (mainFrag == null) {
+            mainFrag = MainFragment.newInstance()
+            ActivityUtils.replaceFragmentInActivity(supportFragmentManager, mainFrag,
+                    R.id.container)
+        }
+        return mainFrag
     }
 }
