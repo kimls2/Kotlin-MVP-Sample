@@ -32,7 +32,7 @@ class MainFragment : Fragment(), MainMvp.View {
         super.onViewCreated(view, savedInstanceState)
         mainRv.adapter = mainAdapter
         mainRv.layoutManager = GridLayoutManager(context, 2)
-        mainPresenter.loadImage()
+        mainPresenter.loadImage(0)
     }
 
     override fun onDestroyView() {

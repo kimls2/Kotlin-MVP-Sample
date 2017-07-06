@@ -1,4 +1,4 @@
-package com.ykim.kotlin_mvp_sample;
+package com.ykim.kotlin_mvp_sample.prime_number;
 
 /**
  * Created by ykim on 2017. 7. 6..

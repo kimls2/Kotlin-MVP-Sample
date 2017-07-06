@@ -18,9 +18,9 @@ import retrofit2.http.Path
 
 interface ImgurService {
 
-    @GET("/3/gallery/{section}/{sort}/{window}/{page}.json")
+    @GET("/3/gallery/hot/viral/{window}/{page}.json")
     fun getGallery(
-            @Path("section") section: String, @Path("sort") sort: String): Observable<GalleryResponse>
+            @Path("page") page: Int): Observable<GalleryResponse>
 
     object Factory {
         @JvmStatic fun makeImugurService(): ImgurService {

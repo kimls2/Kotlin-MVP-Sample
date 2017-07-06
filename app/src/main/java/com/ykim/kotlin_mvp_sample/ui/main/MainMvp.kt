@@ -13,6 +13,6 @@ interface MainMvp {
     }
 
     interface Presenter {
-        fun loadImage()
+        fun loadImage(page:Int)
     }
 }

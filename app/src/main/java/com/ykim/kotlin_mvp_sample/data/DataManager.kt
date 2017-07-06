@@ -12,9 +12,9 @@ import javax.inject.Singleton
  */
 @Singleton class DataManager @Inject constructor(private val imgurService: ImgurService) {
 
-  fun getGallery(): Observable<MutableList<GalleryImage>> {
-    return imgurService.getGallery("hot", "viral")
-        .filter({ (success, _, data) -> success && CollectionUtils.isNotEmpty(data) })
-        .map { it.data }
-  }
+    fun getGallery(page: Int): Observable<MutableList<GalleryImage>> {
+        return imgurService.getGallery(page)
+                .filter({ (success, _, data) -> success && CollectionUtils.isNotEmpty(data) })
+                .map { it.data }
+    }
 }

@@ -1,8 +1,8 @@
 package com.ykim.kotlin_mvp_sample.ui.main.list
 
 import android.content.Context
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.AttributeSet
 import com.ykim.kotlin_mvp_sample.data.model.GalleryImage
 import com.ykim.kotlin_mvp_sample.ui.main.MainComponent
@@ -14,21 +14,21 @@ import javax.inject.Inject
 /**
  * Created by ykim on 2017. 7. 6..
  */
-class MainListView(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) : RecyclerView(context, attrs, defStyle), MainMvp.View {
+class MainListView(private val page: Int, context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) : RecyclerView(context, attrs, defStyle), MainMvp.View {
     private val adapter = MainAdapter()
 
     @Inject lateinit var presenter: MainPresenter
 
     init {
         context.getComponent<MainComponent>().listComponent().inject(this)
-        layoutManager = GridLayoutManager(context, 2)
+        layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         super.setAdapter(adapter)
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         presenter.onAttach(this)
-        presenter.loadImage()
+        presenter.loadImage(page)
     }
 
     override fun onDetachedFromWindow() {

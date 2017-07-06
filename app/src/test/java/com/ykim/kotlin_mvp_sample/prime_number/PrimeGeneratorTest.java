@@ -1,4 +1,4 @@
-package com.ykim.kotlin_mvp_sample;
+package com.ykim.kotlin_mvp_sample.prime_number;
 
 import org.junit.Test;
 

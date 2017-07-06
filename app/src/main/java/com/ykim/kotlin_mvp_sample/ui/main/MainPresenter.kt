@@ -13,8 +13,8 @@ import javax.inject.Inject
 class MainPresenter
 @Inject constructor(val dataManager: DataManager) : BasePresenter<MainMvp.View>(), MainMvp.Presenter {
 
-    override fun loadImage() {
-        disposables.add(dataManager.getGallery()
+    override fun loadImage(page: Int) {
+        disposables.add(dataManager.getGallery(page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(onNext = { view.showGalleryImage(it) },
