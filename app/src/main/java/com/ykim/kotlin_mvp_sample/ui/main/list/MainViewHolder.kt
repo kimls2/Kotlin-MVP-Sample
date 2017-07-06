@@ -14,6 +14,6 @@ class MainViewHolder(context: Context) : BaseViewHolder<GalleryImage>(context) {
     override fun layoutResId(): Int = R.layout.item_main
 
     override fun bind(item: GalleryImage) {
-        Glide.with(context).load(item.title).centerCrop().into(thumbnailIv)
+        Glide.with(context).load(GalleryImage.getThumbnailSize(item.id, item.is_album, item.cover)).centerCrop().into(thumbnailIv)
     }
 }

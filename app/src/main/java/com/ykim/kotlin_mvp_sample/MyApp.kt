@@ -1,28 +1,27 @@
 package com.ykim.kotlin_mvp_sample
 
-import android.app.Activity
 import android.app.Application
-import com.ykim.kotlin_mvp_sample.di.DaggerAppComponent
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import javax.inject.Inject
+import com.ykim.kotlin_mvp_sample.injection.AppComponent
+import com.ykim.kotlin_mvp_sample.injection.AppModule
+import com.ykim.kotlin_mvp_sample.injection.DaggerAppComponent
 
 /**
  * Created by ykim on 2017. 7. 5..
  */
-class MyApp : Application(), HasActivityInjector {
+class MyApp : Application() {
 
-    @Inject lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    lateinit var component: AppComponent
 
     override fun onCreate() {
         super.onCreate()
-//    AppInjector.init(this)
-        DaggerAppComponent.builder().application(this).build().inject(this)
+        component = DaggerAppComponent.builder().appModule(AppModule()).build()
     }
 
-
-    override fun activityInjector(): AndroidInjector<Activity> {
-        return dispatchingAndroidInjector
+    override fun getSystemService(name: String?): Any {
+        when (name) {
+            "component" -> return component
+            else -> return super.getSystemService(name)
+        }
     }
+
 }
