@@ -15,6 +15,7 @@ class MainViewHolder(context: Context) : BaseViewHolder<GalleryImage>(context) {
     override fun layoutResId(): Int = R.layout.item_main
 
     override fun bind(item: GalleryImage) {
+        thumbnailIv.setAspectRatio(item.getAspectRation())
         val url = GalleryImage.getThumbnailSize(item.id, item.is_album, item.cover)
 //        Glide.with(context).load(item.getUrl()).centerCrop().into(thumbnailIv)
         GlideApp.with(this).asDrawable().load(item.getUrl()).fitCenter().placeholder(R.color.colorPrimary).into(thumbnailIv)

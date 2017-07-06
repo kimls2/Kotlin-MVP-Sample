@@ -23,10 +23,7 @@ data class GalleryImage(
         val gifv: String,
         val animated: Boolean,
         val cover_width: Int,
-        val cover_height: Int,
-        val aspectRation: Float
-
-) {
+        val cover_height: Int) {
     fun getUrl(): String {
         var thumbnailId = id
         if (is_album) {
@@ -34,6 +31,16 @@ data class GalleryImage(
         }
         return BASE_IMAGE_ADDRESS + thumbnailId + MEDIUM_THUMBNAIL + ".jpg"
     }
+
+    fun getAspectRation(): Float {
+        val minAspectRatio = 0.7f
+        if (is_album) {
+            return Math.max(minAspectRatio, (cover_width / cover_height).toFloat())
+        } else {
+            return Math.max(minAspectRatio, (width / height).toFloat())
+        }
+    }
+
 
     companion object {
         private val BASE_IMAGE_ADDRESS = "http://i.imgur.com/"
