@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.ykim.kotlin_mvp_sample.R
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -18,7 +19,8 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         val url = intent.getStringExtra(thumbnailUrl)
-        Glide.with(this).load(url).centerCrop().into(bigThumbnail)
+        Glide.with(this).asDrawable().load(url).apply(RequestOptions.centerCropTransform().placeholder(R.color.colorAccent)).into(bigThumbnail)
+//        Glide.with(this).load(url).centerCrop().into(bigThumbnail)
     }
 
     companion object {

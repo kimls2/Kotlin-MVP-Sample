@@ -7,6 +7,8 @@ package com.ykim.kotlin_mvp_sample.data.model
 
 data class GalleryImage(
         val id: String,
+        val cover: String,
+        val is_album: Boolean,
         var title: String,
         var description: String,
         val type: String,
@@ -18,15 +20,21 @@ data class GalleryImage(
         val downs: Int,
         val score: Int,
         var link: String,
-        val cover: String,
         val gifv: String,
         val animated: Boolean,
         val cover_width: Int,
-        val is_album: Boolean,
         val cover_height: Int,
         val aspectRation: Float
 
 ) {
+    fun getUrl(): String {
+        var thumbnailId = id
+        if (is_album) {
+            thumbnailId = cover
+        }
+        return BASE_IMAGE_ADDRESS + thumbnailId + MEDIUM_THUMBNAIL + ".jpg"
+    }
+
     companion object {
         private val BASE_IMAGE_ADDRESS = "http://i.imgur.com/"
         val MEDIUM_THUMBNAIL = 'm'

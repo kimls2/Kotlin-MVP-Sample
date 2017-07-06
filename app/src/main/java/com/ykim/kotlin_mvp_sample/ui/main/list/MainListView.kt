@@ -21,7 +21,6 @@ class MainListView(context: Context, attrs: AttributeSet? = null, defStyle: Int 
 
     init {
         context.getComponent<MainComponent>().listComponent().inject(this)
-
         layoutManager = GridLayoutManager(context, 2)
         super.setAdapter(adapter)
     }

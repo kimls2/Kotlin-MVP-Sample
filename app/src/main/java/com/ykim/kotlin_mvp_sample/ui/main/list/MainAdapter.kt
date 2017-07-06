@@ -8,7 +8,7 @@ import com.ykim.kotlin_mvp_sample.ui.base.BaseViewHolder
 /**
  * Created by ykim on 2017. 7. 5..
  */
-class MainAdapter() : BaseListAdapter<GalleryImage>() {
+class MainAdapter : BaseListAdapter<GalleryImage>() {
     override fun getListItemView(context: Context): BaseViewHolder<GalleryImage> {
         return MainViewHolder(context)
     }
