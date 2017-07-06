@@ -6,4 +6,4 @@ package com.ykim.kotlin_mvp_sample.data.model
 
 data class GalleryResponse(val success: Boolean = false,
     val status: Int = 0,
-    val data: MutableList<GalleryImage> = ArrayList())
+    val data: MutableList<GalleryImage> = mutableListOf())

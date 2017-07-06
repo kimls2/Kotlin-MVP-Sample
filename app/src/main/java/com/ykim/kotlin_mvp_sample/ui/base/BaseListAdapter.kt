@@ -3,11 +3,10 @@ package com.ykim.kotlin_mvp_sample.ui.base
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import java.util.*
 
 abstract class BaseListAdapter<T> : RecyclerView.Adapter<BaseListAdapter<T>.ViewHolder>() {
 
-    protected var items: MutableList<T> = ArrayList()
+    protected var items: MutableList<T> = mutableListOf()
 
     abstract fun getListItemView(context: Context): BaseViewHolder<T>
 
@@ -22,9 +21,11 @@ abstract class BaseListAdapter<T> : RecyclerView.Adapter<BaseListAdapter<T>.View
         notifyItemRangeInserted(0, itemsToAdd.size)
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder = ViewHolder(getListItemView(viewGroup.context))
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder = ViewHolder(
+            getListItemView(viewGroup.context))
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) = viewHolder.view.bind(items[position])
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) = viewHolder.view.bind(
+            items[position])
 
     override fun getItemCount(): Int = items.size
 

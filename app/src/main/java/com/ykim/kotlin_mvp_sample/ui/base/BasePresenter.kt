@@ -1,26 +1,27 @@
 package com.ykim.kotlin_mvp_sample.ui.base
 
-import com.qualson.tubing.ui.base.MvpView
+import io.reactivex.disposables.CompositeDisposable
 
 
 /**
  * Created by ykim on 2017. 4. 18..
  */
-open class BasePresenter<T : MvpView> : Presenter<T> {
+abstract class BasePresenter<T : BaseMvp.View> : BaseMvp.Presenter<T> {
 
-    private var _view: T? = null
+    protected val disposables = CompositeDisposable()
+    protected var _view: T? = null
     var isViewAttached: Boolean = _view != null
-
     val view: T
         get() {
             return _view ?: throw MvpViewNotAttachedException()
         }
 
-    override fun attachView(view: T) {
+    override fun onAttach(view: T) {
         _view = view
     }
 
-    override fun detachView() {
+    override fun onDetach() {
+        disposables.clear()
         _view = null
     }
 
