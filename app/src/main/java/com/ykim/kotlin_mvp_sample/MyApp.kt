@@ -23,5 +23,4 @@ class MyApp : Application() {
             else -> return super.getSystemService(name)
         }
     }
-
 }
