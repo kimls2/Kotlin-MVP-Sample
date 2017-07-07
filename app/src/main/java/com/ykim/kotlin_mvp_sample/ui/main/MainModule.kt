@@ -7,7 +7,7 @@ import dagger.Module
  */
 @Module
 class MainModule {
-//    @Provides fun provieMainPresenter(dataManager: DataManager): MainPresenter {
+//    @Provides fun provideMainPresenter(dataManager: DataManager): MainPresenter {
 //        return MainPresenter(dataManager)
 //    }
 }

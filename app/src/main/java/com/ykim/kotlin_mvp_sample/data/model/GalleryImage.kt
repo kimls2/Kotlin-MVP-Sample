@@ -23,7 +23,8 @@ data class GalleryImage(
         val gifv: String,
         val animated: Boolean,
         val cover_width: Int,
-        val cover_height: Int) {
+        val cover_height: Int)
+{
     fun getUrl(): String {
         var thumbnailId = id
         if (is_album) {

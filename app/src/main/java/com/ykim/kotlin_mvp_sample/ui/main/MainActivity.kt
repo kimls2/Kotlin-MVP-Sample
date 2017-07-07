@@ -14,6 +14,7 @@ import com.ykim.kotlin_mvp_sample.util.getAppComponent
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
     lateinit var component: MainComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {

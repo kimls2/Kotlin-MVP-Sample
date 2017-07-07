@@ -10,7 +10,7 @@ import dagger.Provides
  */
 @Module
 class ListModule {
-    @Provides fun provieMainPresenter(dataManager: DataManager): MainPresenter {
+    @Provides fun provideMainPresenter(dataManager: DataManager): MainPresenter {
         return MainPresenter(dataManager)
     }
 }
