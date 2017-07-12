@@ -4,11 +4,11 @@ package com.ykim.kotlin_mvp_sample.prime_number;
  * Created by ykim on 2017. 7. 6..
  */
 
-public class PrimeGenerator {
+class PrimeGenerator {
     private static boolean[] crossedOut;
     private static int[] result;
 
-    public static int[] generatePrimes(int maxValue) {
+    static int[] generatePrimes(int maxValue) {
         if (maxValue < 2) {
             return new int[0];
         } else {
